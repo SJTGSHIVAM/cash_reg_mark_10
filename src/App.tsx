@@ -4,6 +4,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import { BrowserRouter } from "react-router-dom";
 import Backcard from "./components/Backcard";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       {" "}
       {/* <Navbar /> */}
       <Backcard />
+      <Footer />
     </BrowserRouter>
   );
 }
