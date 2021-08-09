@@ -33,7 +33,7 @@ const Footer = () => {
         </li>
       </ul>
 
-      <div className="legacyText">© 2020 | Shivam Pandey</div>
+      <div className="legacyText">© 2021 | Shivam Pandey</div>
     </footer>
   );
 };
