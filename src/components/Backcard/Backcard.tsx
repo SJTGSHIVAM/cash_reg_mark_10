@@ -47,7 +47,7 @@ const Backcard = () => {
       </label>
       <label>
         {!valBillAmount && <span>Please enter Numeric Bill Amount</span>}
-        <section className="label"> Name:</section>
+        <section className="label"> Cash Given:</section>
         <input type="number" value={cashGiven} onChange={onCashGivenChange} />
       </label>
       {!valCashGiven && <span>Please enter Numeric Given Cash Amount</span>}
