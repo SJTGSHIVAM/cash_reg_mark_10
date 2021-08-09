@@ -26,10 +26,12 @@ const Backcard = () => {
         <input type="number" value={billAmount} onChange={onBillAmountChange} />
       </label>
       <label>
+        <span>Please enter Numeric Bill Amount</span>
         <section className="label"> Name:</section>
         <input type="number" value={cashGiven} onChange={onCashGivenChange} />
       </label>
-      <input type="submit" />
+      <span>Please enter Numeric Given Cash Amount</span>
+      <span>Cash amount should be greater or equal to Bill Amount</span>
 
       <section className="label">Return Change:</section>
       <div>
