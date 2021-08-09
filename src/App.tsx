@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       {" "}
-      {/* <Navbar /> */}
+      <Navbar />
       <Backcard />
       <Footer />
     </BrowserRouter>
