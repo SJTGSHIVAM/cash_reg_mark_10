@@ -11,7 +11,7 @@ const Backcard = () => {
   // const validateBillAmount = (e:string):boolean => {};
   // const validateCashGiven = (e:string):boolean => {};
   const validateCashGivenAmt = (e: string): boolean => {
-    const cashInt = parseInt(e, 10);
+    const cashInt = parseFloat(e);
     if (billAmount > cashInt) return false;
     return true;
   };
@@ -19,7 +19,7 @@ const Backcard = () => {
   const onBillAmountChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    const billAmt = parseInt(event.target.value, 10);
+    const billAmt = parseFloat(event.target.value);
     if (isNaN(billAmt)) {
       setValBillAmount(false);
       return;
@@ -31,7 +31,7 @@ const Backcard = () => {
   const onCashGivenChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    setCashGiven(parseInt(event.target.value, 10));
+    setCashGiven(parseFloat(event.target.value));
   };
 
   return (
