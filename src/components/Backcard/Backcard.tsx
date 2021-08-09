@@ -1,12 +1,31 @@
 import { useState } from "react";
+import { couldStartTrivia } from "typescript";
 import "./Backcard.css";
 const Backcard = () => {
   const [billAmount, setBillAmount] = useState(0);
+  const [valBillAmount, setValBillAmount] = useState(true);
   const [cashGiven, setCashGiven] = useState(0);
+  const [valCashGiven, setValCashGiven] = useState(true);
+  const [valCashGivenAmt, setValCashGivenAmt] = useState(true);
+
+  // const validateBillAmount = (e:string):boolean => {};
+  // const validateCashGiven = (e:string):boolean => {};
+  const validateCashGivenAmt = (e: string): boolean => {
+    const cashInt = parseInt(e, 10);
+    if (billAmount > cashInt) return false;
+    return true;
+  };
+
   const onBillAmountChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    setBillAmount(parseInt(event.target.value, 10));
+    const billAmt = parseInt(event.target.value, 10);
+    if (isNaN(billAmt)) {
+      setValBillAmount(false);
+      return;
+    }
+    setValBillAmount(true);
+    setBillAmount(billAmt);
   };
 
   const onCashGivenChange = (
@@ -14,6 +33,7 @@ const Backcard = () => {
   ): void => {
     setCashGiven(parseInt(event.target.value, 10));
   };
+
   return (
     <div className="bcard">
       <header className="head">Lets manage your cash!</header>
@@ -26,12 +46,14 @@ const Backcard = () => {
         <input type="number" value={billAmount} onChange={onBillAmountChange} />
       </label>
       <label>
-        <span>Please enter Numeric Bill Amount</span>
+        {!valBillAmount && <span>Please enter Numeric Bill Amount</span>}
         <section className="label"> Name:</section>
         <input type="number" value={cashGiven} onChange={onCashGivenChange} />
       </label>
-      <span>Please enter Numeric Given Cash Amount</span>
-      <span>Cash amount should be greater or equal to Bill Amount</span>
+      {!valCashGiven && <span>Please enter Numeric Given Cash Amount</span>}
+      {valCashGiven && !valCashGivenAmt && (
+        <span>Cash amount should be greater or equal to Bill Amount</span>
+      )}
 
       <section className="label">Return Change:</section>
       <div>
