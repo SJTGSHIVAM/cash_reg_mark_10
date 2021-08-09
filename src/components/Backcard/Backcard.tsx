@@ -1,17 +1,21 @@
 import { useState } from "react";
 import { couldStartTrivia } from "typescript";
+import BillAmountAlert from "../BillAmountAlert";
+import CashGivenAlert from "../CashGivenAlert";
+import CashGivenAmtAlert from "../CashGivenAmtAlert";
+import ReturnNotes from "../ReturnNotes";
 import "./Backcard.css";
 const Backcard = () => {
   const [billAmount, setBillAmount] = useState(0);
-  const [valBillAmount, setValBillAmount] = useState(true);
+  const [valBillAmount, setValBillAmount] = useState(false);
   const [cashGiven, setCashGiven] = useState(0);
-  const [valCashGiven, setValCashGiven] = useState(true);
-  const [valCashGivenAmt, setValCashGivenAmt] = useState(true);
+  const [valCashGiven, setValCashGiven] = useState(false);
+  const [valCashGivenAmt, setValCashGivenAmt] = useState(false);
 
   // const validateBillAmount = (e:string):boolean => {};
   // const validateCashGiven = (e:string):boolean => {};
-  const validateCashGivenAmt = (e: string): boolean => {
-    const cashInt = parseFloat(e);
+  const differentNotes = [2000, 500, 100, 20, 10, 5, 1];
+  const validateCashGivenAmt = (cashInt: number): boolean => {
     if (billAmount > cashInt) return false;
     return true;
   };
@@ -20,8 +24,10 @@ const Backcard = () => {
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
     const billAmt = parseFloat(event.target.value);
+    setValCashGivenAmt(false);
     if (isNaN(billAmt)) {
       setValBillAmount(false);
+      setBillAmount(billAmt);
       return;
     }
     setValBillAmount(true);
@@ -31,8 +37,34 @@ const Backcard = () => {
   const onCashGivenChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    setCashGiven(parseFloat(event.target.value));
+    const cashAmt = parseFloat(event.target.value);
+    setValCashGivenAmt(false);
+    if (isNaN(cashAmt)) {
+      setValCashGiven(false);
+      setCashGiven(cashAmt);
+      return;
+    }
+
+    setValCashGiven(true);
+    setCashGiven(cashAmt);
   };
+
+  // const genrateNotesCount=(bill,cash)=>{
+  //   if((bill-cash)==0)
+  //   return [];
+  //   const total=bill-cash;
+  //   let remcost=total;
+  //   for note in differentNotes{
+  //              if(remcost >= note){
+  //       let countOfNotes = Math.floor(remcost/note);
+  //       remcost = remcost - countOfNotes*note;
+  //       noOfNotes[index].innerText = `${notes}`;
+  //   }
+  //   return remcost
+  //   }
+
+  };
+
 
   return (
     <div className="bcard">
@@ -45,33 +77,32 @@ const Backcard = () => {
         <section className="label"> Bill Amount:</section>
         <input type="number" value={billAmount} onChange={onBillAmountChange} />
       </label>
+
+      <BillAmountAlert valBillAmount={valBillAmount} />
       <label>
-        {!valBillAmount && <span>Please enter Numeric Bill Amount</span>}
         <section className="label"> Cash Given:</section>
         <input type="number" value={cashGiven} onChange={onCashGivenChange} />
       </label>
-      {!valCashGiven && <span>Please enter Numeric Given Cash Amount</span>}
-      {valCashGiven && !valCashGivenAmt && (
-        <span>Cash amount should be greater or equal to Bill Amount</span>
-      )}
 
-      <section className="label">Return Change:</section>
-      <div>
-        <div className="table-col">
-          <span className="smallcard">Note: </span>
-          <span className="smallcard">No. of Notes</span>
-        </div>
-        {[
+      <CashGivenAlert valCashGiven={valCashGiven} />
+      <CashGivenAmtAlert
+        valCashGiven={valCashGiven}
+        valCashGivenAmt={valCashGivenAmt}
+      />
+      <button
+        onClick={() => {
+          setValCashGivenAmt(validateCashGivenAmt(cashGiven));
+        }}
+      >
+        CHECK
+      </button>
+      <ReturnNotes
+        notes={[
           { amt: 2000, total: 1 },
           { amt: 1000, total: 1 },
           { amt: 500, total: 1 },
-        ].map((note) => (
-          <div className="table-col">
-            <span className="smallcard">{note.amt}: </span>
-            <span className="smallcard">{note.total}</span>
-          </div>
-        ))}
-      </div>
+        ]}
+      />
     </div>
   );
 };
