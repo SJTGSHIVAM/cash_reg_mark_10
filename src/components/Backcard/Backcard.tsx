@@ -11,10 +11,12 @@ const Backcard = () => {
   const [cashGiven, setCashGiven] = useState(0);
   const [valCashGiven, setValCashGiven] = useState(false);
   const [valCashGivenAmt, setValCashGivenAmt] = useState(false);
-
+  const [noteArray, setNoteArray] = useState<{ amt: number; total: number }[]>(
+    []
+  );
   // const validateBillAmount = (e:string):boolean => {};
   // const validateCashGiven = (e:string):boolean => {};
-  const differentNotes = [2000, 500, 100, 20, 10, 5, 1];
+  const differentNotes: number[] = [2000, 500, 100, 20, 10, 5, 1];
   const validateCashGivenAmt = (cashInt: number): boolean => {
     if (billAmount > cashInt) return false;
     return true;
@@ -48,23 +50,25 @@ const Backcard = () => {
     setValCashGiven(true);
     setCashGiven(cashAmt);
   };
+  const genrateNotesCount = (bill: number, cash: number) => {
+    if (bill - cash === 0) return [];
+    const total: number = cash - bill;
+    let remcost: number = total;
+    let noOfNotes: { amt: number; total: number }[] = [];
+    for (let notestr in differentNotes) {
+      let note = differentNotes[notestr];
+      if (remcost >= note) {
+        let countOfNotes = Math.floor(remcost / note);
+        remcost = remcost - countOfNotes * note;
+        // console.log({ amt: note, total: countOfNotes });
 
-  // const genrateNotesCount=(bill,cash)=>{
-  //   if((bill-cash)==0)
-  //   return [];
-  //   const total=bill-cash;
-  //   let remcost=total;
-  //   for note in differentNotes{
-  //              if(remcost >= note){
-  //       let countOfNotes = Math.floor(remcost/note);
-  //       remcost = remcost - countOfNotes*note;
-  //       noOfNotes[index].innerText = `${notes}`;
-  //   }
-  //   return remcost
-  //   }
-
+        noOfNotes.push({ amt: note, total: countOfNotes });
+      }
+      //       noOfNotes[index].innerText = `${notes}`
+    }
+    console.log(noOfNotes);
+    return noOfNotes;
   };
-
 
   return (
     <div className="bcard">
@@ -92,17 +96,17 @@ const Backcard = () => {
       <button
         onClick={() => {
           setValCashGivenAmt(validateCashGivenAmt(cashGiven));
+
+          if (valCashGivenAmt) {
+            setNoteArray(genrateNotesCount(billAmount, cashGiven));
+            // console.log(noteArray);
+            // console.log(billAmount, cashGiven, updateNoteArray);
+          }
         }}
       >
         CHECK
       </button>
-      <ReturnNotes
-        notes={[
-          { amt: 2000, total: 1 },
-          { amt: 1000, total: 1 },
-          { amt: 500, total: 1 },
-        ]}
-      />
+      <ReturnNotes notes={noteArray} />
     </div>
   );
 };
