@@ -97,15 +97,14 @@ const Backcard = () => {
         onClick={() => {
           setValCashGivenAmt(validateCashGivenAmt(cashGiven));
 
-          if (valCashGivenAmt) {
+          if (validateCashGivenAmt(cashGiven)) {
             setNoteArray(genrateNotesCount(billAmount, cashGiven));
-            // console.log(noteArray);
-            // console.log(billAmount, cashGiven, updateNoteArray);
           }
         }}
       >
         CHECK
       </button>
+
       <ReturnNotes notes={noteArray} />
     </div>
   );
