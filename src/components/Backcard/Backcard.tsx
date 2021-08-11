@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { couldStartTrivia } from "typescript";
 import BillAmountAlert from "../BillAmountAlert";
@@ -6,7 +7,7 @@ import CashGivenAmtAlert from "../CashGivenAmtAlert";
 import ReturnNotes from "../ReturnNotes";
 import "./Backcard.css";
 const Backcard = () => {
-  const [billAmount, setBillAmount] = useState(0);
+  const [billAmount, setBillAmount] = useState<number>(0);
   const [valBillAmount, setValBillAmount] = useState(true);
   const [cashGiven, setCashGiven] = useState(0);
   const [valCashGiven, setValCashGiven] = useState(true);
@@ -15,7 +16,7 @@ const Backcard = () => {
   const [noteArray, setNoteArray] = useState<{ amt: number; total: number }[]>(
     []
   );
-  // const validateBillAmount = (e:string):boolean => {};
+  const validateAmount = (e: number): boolean => isNaN(e) || e < 0;
   // const validateCashGiven = (e:string):boolean => {};
   const differentNotes: number[] = [2000, 500, 100, 20, 10, 5, 1];
   const validateCashGivenAmt = (cashInt: number): boolean => {
@@ -29,7 +30,7 @@ const Backcard = () => {
     setIsClicked(false);
     const billAmt = parseFloat(event.target.value);
     setValCashGivenAmt(false);
-    if (isNaN(billAmt)) {
+    if (validateAmount(billAmt)) {
       setValBillAmount(false);
       setBillAmount(billAmt);
       return;
@@ -44,7 +45,7 @@ const Backcard = () => {
     setIsClicked(false);
     const cashAmt = parseFloat(event.target.value);
     setValCashGivenAmt(false);
-    if (isNaN(cashAmt)) {
+    if (validateAmount(cashAmt)) {
       setValCashGiven(false);
       setCashGiven(cashAmt);
       return;
@@ -72,6 +73,7 @@ const Backcard = () => {
     console.log(noOfNotes);
     return noOfNotes;
   };
+  // useEffect(()=>{onBillAmountChange},[]);
 
   return (
     <div className="bcard">
