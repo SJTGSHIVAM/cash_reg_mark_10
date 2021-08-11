@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useState } from "react";
 import { couldStartTrivia } from "typescript";
 import BillAmountAlert from "../BillAmountAlert";
@@ -8,15 +7,15 @@ import ReturnNotes from "../ReturnNotes";
 import "./Backcard.css";
 const Backcard = () => {
   const [billAmount, setBillAmount] = useState<number>(0);
-  const [valBillAmount, setValBillAmount] = useState(true);
+  const [valBillAmount, setValBillAmount] = useState(false);
   const [cashGiven, setCashGiven] = useState(0);
-  const [valCashGiven, setValCashGiven] = useState(true);
+  const [valCashGiven, setValCashGiven] = useState(false);
   const [valCashGivenAmt, setValCashGivenAmt] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [noteArray, setNoteArray] = useState<{ amt: number; total: number }[]>(
     []
   );
-  const validateAmount = (e: number): boolean => isNaN(e) || e < 0;
+  const validateAmount = (e: number): boolean => isNaN(e) || e < 1;
   // const validateCashGiven = (e:string):boolean => {};
   const differentNotes: number[] = [2000, 500, 100, 20, 10, 5, 1];
   const validateCashGivenAmt = (cashInt: number): boolean => {
@@ -28,6 +27,7 @@ const Backcard = () => {
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
     setIsClicked(false);
+    setCashGiven(0);
     const billAmt = parseFloat(event.target.value);
     setValCashGivenAmt(false);
     if (validateAmount(billAmt)) {
@@ -73,7 +73,6 @@ const Backcard = () => {
     console.log(noOfNotes);
     return noOfNotes;
   };
-  // useEffect(()=>{onBillAmountChange},[]);
 
   return (
     <div className="bcard">
@@ -104,21 +103,21 @@ const Backcard = () => {
             valCashGiven={valCashGiven}
             valCashGivenAmt={valCashGivenAmt}
           />
+
+          <button
+            onClick={() => {
+              setValCashGivenAmt(validateCashGivenAmt(cashGiven));
+
+              if (validateCashGivenAmt(cashGiven)) {
+                setIsClicked(true);
+                setNoteArray(genrateNotesCount(billAmount, cashGiven));
+              }
+            }}
+          >
+            CHECK
+          </button>
         </>
       )}
-      <button
-        onClick={() => {
-          setValCashGivenAmt(validateCashGivenAmt(cashGiven));
-
-          if (validateCashGivenAmt(cashGiven)) {
-            setIsClicked(true);
-            setNoteArray(genrateNotesCount(billAmount, cashGiven));
-          }
-        }}
-      >
-        CHECK
-      </button>
-
       {isClicked && <ReturnNotes notes={noteArray} />}
     </div>
   );

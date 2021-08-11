@@ -10,7 +10,7 @@ const CashGivenAmtAlert = ({
       {" "}
       {valCashGiven && !valCashGivenAmt && (
         <span>
-          Make sure Cash amount is greater or equal to Bill Amount and click on
+          Make sure Cash amount is greater or equal to Bill Amount then click on
           Check Button
         </span>
       )}
