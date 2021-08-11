@@ -3,7 +3,7 @@ const ReturnNotes = ({
 }: {
   notes: { amt: number; total: number }[];
 }) => {
-  console.log(notes);
+  // console.log(notes);
 
   return (
     <>

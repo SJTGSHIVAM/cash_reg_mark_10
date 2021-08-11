@@ -12,7 +12,6 @@ function Navbar() {
         <div className="nav-container">
           <NavLink exact to="/" className="nav-logo">
             CashReg
-            <i className="fa fa-inr"></i>
           </NavLink>
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>
