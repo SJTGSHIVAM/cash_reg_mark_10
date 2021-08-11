@@ -7,10 +7,11 @@ import ReturnNotes from "../ReturnNotes";
 import "./Backcard.css";
 const Backcard = () => {
   const [billAmount, setBillAmount] = useState(0);
-  const [valBillAmount, setValBillAmount] = useState(false);
+  const [valBillAmount, setValBillAmount] = useState(true);
   const [cashGiven, setCashGiven] = useState(0);
-  const [valCashGiven, setValCashGiven] = useState(false);
+  const [valCashGiven, setValCashGiven] = useState(true);
   const [valCashGivenAmt, setValCashGivenAmt] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
   const [noteArray, setNoteArray] = useState<{ amt: number; total: number }[]>(
     []
   );
@@ -25,6 +26,7 @@ const Backcard = () => {
   const onBillAmountChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
+    setIsClicked(false);
     const billAmt = parseFloat(event.target.value);
     setValCashGivenAmt(false);
     if (isNaN(billAmt)) {
@@ -39,6 +41,7 @@ const Backcard = () => {
   const onCashGivenChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
+    setIsClicked(false);
     const cashAmt = parseFloat(event.target.value);
     setValCashGivenAmt(false);
     if (isNaN(cashAmt)) {
@@ -83,21 +86,30 @@ const Backcard = () => {
       </label>
 
       <BillAmountAlert valBillAmount={valBillAmount} />
-      <label>
-        <section className="label"> Cash Given:</section>
-        <input type="number" value={cashGiven} onChange={onCashGivenChange} />
-      </label>
+      {valBillAmount && (
+        <>
+          <label>
+            <section className="label"> Cash Given:</section>
+            <input
+              type="number"
+              value={cashGiven}
+              onChange={onCashGivenChange}
+            />
+          </label>
 
-      <CashGivenAlert valCashGiven={valCashGiven} />
-      <CashGivenAmtAlert
-        valCashGiven={valCashGiven}
-        valCashGivenAmt={valCashGivenAmt}
-      />
+          <CashGivenAlert valCashGiven={valCashGiven} />
+          <CashGivenAmtAlert
+            valCashGiven={valCashGiven}
+            valCashGivenAmt={valCashGivenAmt}
+          />
+        </>
+      )}
       <button
         onClick={() => {
           setValCashGivenAmt(validateCashGivenAmt(cashGiven));
 
           if (validateCashGivenAmt(cashGiven)) {
+            setIsClicked(true);
             setNoteArray(genrateNotesCount(billAmount, cashGiven));
           }
         }}
@@ -105,7 +117,7 @@ const Backcard = () => {
         CHECK
       </button>
 
-      <ReturnNotes notes={noteArray} />
+      {isClicked && <ReturnNotes notes={noteArray} />}
     </div>
   );
 };
