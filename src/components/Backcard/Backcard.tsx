@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { couldStartTrivia } from "typescript";
 import BillAmountAlert from "../BillAmountAlert";
 import CashGivenAlert from "../CashGivenAlert";
 import CashGivenAmtAlert from "../CashGivenAmtAlert";
 import ReturnNotes from "../ReturnNotes";
 import "./Backcard.css";
+
+import pay from "./pay.svg";
+
 const Backcard = () => {
   const [billAmount, setBillAmount] = useState<number>(0);
   const [valBillAmount, setValBillAmount] = useState(false);
@@ -76,6 +78,8 @@ const Backcard = () => {
 
   return (
     <div className="bcard">
+      <a href="/" className="logo"></a>
+
       <header className="head">Lets manage your cash!</header>
       <section className="instruction">
         Enter the bill amount and cash given by the customer and know minimum
@@ -105,6 +109,7 @@ const Backcard = () => {
           />
 
           <button
+            className="checkbtn"
             onClick={() => {
               setValCashGivenAmt(validateCashGivenAmt(cashGiven));
 

@@ -1,21 +1,92 @@
 * {
   box-sizing: border-box;
 }
+
+.head {
+  font-weight: bold;
+  font-size: large;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.instruction {
+  font-family: "Courier New", Courier, monospace;
+  align-content: center;
+  font-size: medium;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
 .bcard {
-  background-color: #f8f9fa;
-  margin: 30px auto;
+  display: flex;
+  width: 60%;
+  height: fit-content;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+
   border-radius: 10px;
-  padding: 0 0 20px 0;
-  -webkit-box-shadow: 5px 5px 13px 0px rgba(50, 50, 50, 0.39);
-  -moz-box-shadow: 5px 5px 13px 0px rgba(50, 50, 50, 0.39);
   box-shadow: 5px 5px 13px 0px rgba(50, 50, 50, 0.39);
 }
+
+.checkbtn {
+  background-color: #f5b921;
+
+  margin: 0.5rem;
+  padding: 0.3rem;
+}
+
+.table-col {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
 .smallcard {
   background-color: #f8f9fa;
-  margin: 1rem 1rem 1rem 1rem;
+  /* color: #f8f9fa; */
+  align-items: center;
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
   border-radius: 10px;
   padding: 0.5rem;
   -webkit-box-shadow: 5px 5px 13px 0px rgba(50, 50, 50, 0.39);
   -moz-box-shadow: 5px 5px 13px 0px rgba(50, 50, 50, 0.39);
   box-shadow: 5px 5px 13px 0px rgba(50, 50, 50, 0.39);
+}
+
+.smallcardH {
+  background-color: #1f5156;
+  color: #f8f9fa;
+  align-items: center;
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  border-radius: 10px;
+  padding: 0.5rem;
+  -webkit-box-shadow: 5px 5px 13px 0px rgba(50, 50, 50, 0.39);
+  -moz-box-shadow: 5px 5px 13px 0px rgba(50, 50, 50, 0.39);
+  box-shadow: 5px 5px 13px 0px rgba(50, 50, 50, 0.39);
+}
+
+.label {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.9em;
+  margin: 0.2rem;
+}
+
+.alert {
+  text-align: center;
+  color: red;
+  font-family: "Times New Roman", Times, serif;
+  margin: 0.1rem;
+}
+
+.logo {
+  display: block;
+  width: 8rem;
+  height: 5rem;
+  margin-top: 0.5rem;
+  background: url(pay.svg);
+  /* background-size: 100px 82px; */
+  background-size: 8rem 5rem;
 }

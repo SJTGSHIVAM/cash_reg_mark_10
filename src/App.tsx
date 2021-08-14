@@ -1,5 +1,3 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -10,13 +8,14 @@ import About from "./components/About";
 function App() {
   return (
     <BrowserRouter>
-      {" "}
+      {/* <div className="page"> */}
       <Navbar />
       <Switch>
         <Route path="/" component={Backcard} exact />
         <Route path="/about" exact component={About} />
       </Switch>
       <Footer />
+      {/* </div> */}
     </BrowserRouter>
   );
 }

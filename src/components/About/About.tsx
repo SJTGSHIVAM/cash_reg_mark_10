@@ -1,12 +1,9 @@
-import { useState } from "react";
-import { couldStartTrivia } from "typescript";
-
 import "./About.css";
 const About = () => {
   return (
     <div className="bcard">
       <header className="head">
-        <h1>Lets manage your cash!</h1>
+        <h2>Lets manage your cash!</h2>
       </header>
       <section className="about">
         This is a simple app create using Typescript and ReactJS Lorem ipsum
