@@ -1,6 +1,19 @@
-# Getting Started with Create React App
+# Description
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a web app that calculates the changes you need to return to the customer on a particular bill amount and sum of money paid. Built using ReactJS.
+
+# Live Link
+
+https://cashregmark10.netlify.app
+
+# Salient features are
+
+- Built in ReactJS
+- Have currencies of Rs. 1, 5, 10, 20, 100, 500, 2000
+- Have an input field for the user aka cashier to enter a bill amount
+- Have an input field for the user aka cashier to enter the cash given by the customer.
+- The app tells the cashier/user the amount to be returned in change to the customer with the minimum number of notes
+- Cash given input only opens up if bill amount is value
 
 ## Available Scripts
 

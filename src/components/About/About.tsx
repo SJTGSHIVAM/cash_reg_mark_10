@@ -3,19 +3,38 @@ const About = () => {
   return (
     <div className="bcard">
       <header className="head">
-        <h2>Lets manage your cash!</h2>
+        <h1>Lets manage your cash!</h1>
       </header>
       <section className="about">
-        This is a simple app create using Typescript and ReactJS Lorem ipsum
-        dolor sit amet consectetur adipisicing elit. Beatae iste expedita
-        debitis perspiciatis! Quos, expedita numquam. Delectus, corporis natus
-        similique facere at minima, officia eum dolore tenetur est maxime quam
-        voluptates! Laborum itaque amet quod vero odit ea voluptates officia vel
-        voluptatem, fugiat ratione rem nihil labore odio nobis deleniti iste
-        facilis nam repudiandae. Facilis quod dolore ab deleniti, debitis esse
-        repudiandae obcaecati adipisci suscipit excepturi, nesciunt architecto
-        delectus voluptatum ipsa itaque explicabo ullam quae sapiente quam,
-        inventore reprehenderit ea?
+        <h2 id="description">Description</h2>
+        <p>
+          This is a web app that calculates the changes you need to return to
+          the customer on a particular bill amount and sum of money paid. Built
+          using ReactJS.
+        </p>
+        <h2 id="live-link">Github Link</h2>
+        <p>
+          <a href="https://github.com/SJTGSHIVAM/cash_reg_mark_10">
+            https://github.com/SJTGSHIVAM/cash_reg_mark_10
+          </a>
+        </p>
+        <h2 id="salient-features-are">Salient features are</h2>
+        <ul>
+          <li>Built in ReactJS </li>
+          <li>Have currencies of Rs. 1, 5, 10, 20, 100, 500, 2000</li>
+          <li>
+            Have an input field for the user aka cashier to enter a bill amount
+          </li>
+          <li>
+            Have an input field for the user aka cashier to enter the cash given
+            by the customer.
+          </li>
+          <li>
+            The app tells the cashier/user the amount to be returned in change
+            to the customer with the minimum number of notes
+          </li>
+          <li>Cash given input only opens up if bill amount is value</li>
+        </ul>
       </section>
     </div>
   );
