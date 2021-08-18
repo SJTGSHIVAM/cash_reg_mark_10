@@ -3,7 +3,7 @@ const About = () => {
   return (
     <div className="bcard">
       <header className="head">
-        <h1>Lets manage your cash!</h1>
+        <h1>About</h1>
       </header>
       <section className="about">
         <h2 id="description">Description</h2>
@@ -15,11 +15,11 @@ const About = () => {
         <h2 id="live-link">Github Link</h2>
         <p>
           <a href="https://github.com/SJTGSHIVAM/cash_reg_mark_10">
-            https://github.com/SJTGSHIVAM/cash_reg_mark_10
+            Click here
           </a>
         </p>
         <h2 id="salient-features-are">Salient features are</h2>
-        <ul>
+        <ol>
           <li>Built in ReactJS </li>
           <li>Have currencies of Rs. 1, 5, 10, 20, 100, 500, 2000</li>
           <li>
@@ -34,7 +34,7 @@ const About = () => {
             to the customer with the minimum number of notes
           </li>
           <li>Cash given input only opens up if bill amount is value</li>
-        </ul>
+        </ol>
       </section>
     </div>
   );
